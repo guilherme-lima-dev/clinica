@@ -41,7 +41,7 @@ class TipoConsultaController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($tipoConsultum);
             $entityManager->flush();
-
+            $this->addFlash('success', 'O item foi criado com sucesso.');
             return $this->redirectToRoute('tipo_consulta_index');
         }
 
@@ -71,7 +71,7 @@ class TipoConsultaController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'O item foi editado com sucesso.');
             return $this->redirectToRoute('tipo_consulta_index');
         }
 
@@ -90,6 +90,7 @@ class TipoConsultaController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($tipoConsultum);
             $entityManager->flush();
+            $this->addFlash('success', 'O item foi excluido com sucesso.');
         }
 
         return $this->redirectToRoute('tipo_consulta_index');

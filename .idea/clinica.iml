@@ -141,5 +141,7 @@
     <orderEntry type="library" name="bootstrap-datetimepicker.pt-BR" level="application" />
     <orderEntry type="library" name="pt-BR" level="application" />
     <orderEntry type="library" name="toastr" level="application" />
+    <orderEntry type="library" name="ckeditor" level="application" />
+    <orderEntry type="library" name="pt-br" level="application" />
   </component>
 </module>

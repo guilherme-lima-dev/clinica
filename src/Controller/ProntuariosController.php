@@ -46,7 +46,7 @@ class ProntuariosController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($prontuario);
             $entityManager->flush();
-
+            $this->addFlash('success', 'O item foi criado com sucesso.');
             return $this->redirectToRoute('prontuarios_index');
         }
 
@@ -76,7 +76,7 @@ class ProntuariosController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'O item foi editado com sucesso.');
             return $this->redirectToRoute('prontuarios_index');
         }
 
@@ -95,6 +95,7 @@ class ProntuariosController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($prontuario);
             $entityManager->flush();
+            $this->addFlash('success', 'O item foi excluido com sucesso.');
         }
 
         return $this->redirectToRoute('prontuarios_index');

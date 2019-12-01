@@ -45,7 +45,7 @@ class AcessoController extends AbstractController
             $acesso->setPassword(sha1(md5($acesso->getPassword())));
             $entityManager->persist($acesso);
             $entityManager->flush();
-
+            $this->addFlash('success', 'O item foi criado com sucesso.');
             return $this->redirectToRoute('acesso_index');
         }
 
@@ -76,7 +76,7 @@ class AcessoController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $acesso->setPassword(sha1(md5($acesso->getPassword())));
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'O item foi editado com sucesso.');
             return $this->redirectToRoute('acesso_index');
         }
 
@@ -96,7 +96,7 @@ class AcessoController extends AbstractController
             $entityManager->remove($acesso);
             $entityManager->flush();
         }
-
+        $this->addFlash('success', 'O item foi excluído com sucesso.');
         return $this->redirectToRoute('acesso_index');
     }
 
@@ -105,27 +105,26 @@ class AcessoController extends AbstractController
      */
     public function changePassword(Request $request): Response
     {
-        if($request->getMethod() == 'GET'){
-            return $this->render('acesso/changePassword.html.twig', array(
-            ));
-        }elseif ($request->getMethod() == 'POST'){
+        if ($request->getMethod() == 'GET') {
+            return $this->render('acesso/changePassword.html.twig', array());
+        } elseif ($request->getMethod() == 'POST') {
 
             $entityManager = $this->getDoctrine()->getManager();
             $antigaSenha = $request->request->get('senhaAntiga');
             $senha = $request->request->get('senhaNova');
             $confirmaSenha = $request->request->get('senhaConfirmada');
 
-            if(sha1(md5($antigaSenha)) == $this->getUser()->getPassword()){
-                if($senha == $confirmaSenha){
+            if (sha1(md5($antigaSenha)) == $this->getUser()->getPassword()) {
+                if ($senha == $confirmaSenha) {
                     $this->getUser()->setPassword(sha1(md5($senha)));
                     $entityManager->merge($this->getUser());
                     $entityManager->flush();
                     $this->addFlash('success', 'Senha alterada com sucesso!');
-                }else{
+                } else {
                     $this->addFlash('error', 'As senhas de confirmação não correspondem!');
                     return $this->redirectToRoute('change_password');
                 }
-            }else{
+            } else {
                 $this->addFlash('error', 'A senha antiga não confere!');
                 return $this->redirectToRoute('change_password');
             }

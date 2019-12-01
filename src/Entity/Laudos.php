@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Laudos
  *
- * @ORM\Table(name="laudos", indexes={@ORM\Index(name="fk_laudos_exames1_idx", columns={"exames_id"})})
+ * @ORM\Table(name="laudos")
  * @ORM\Entity
  */
 class Laudos
@@ -36,14 +37,10 @@ class Laudos
     private $data;
 
     /**
-     * @var Exames
-     *
-     * @ORM\ManyToOne(targetEntity="Exames")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="exames_id", referencedColumnName="id")
-     * })
-     */
-    private $exames;
+     * @ORM\OneToOne(targetEntity="Exames",inversedBy="laudo")
+     * @ORM\JoinColumn(name="exame_id",referencedColumnName="id")
+    */
+    private $exame;
 
     /**
      * @return int
@@ -94,20 +91,19 @@ class Laudos
     }
 
     /**
-     * @return Exames
+     * @return mixed
      */
-    public function getExames(): ?Exames
+    public function getExame()
     {
-        return $this->exames;
+        return $this->exame;
     }
 
     /**
-     * @param Exames $exames
+     * @param mixed $exame
      */
-    public function setExames(Exames $exames): void
+    public function setExame($exame)
     {
-        $this->exames = $exames;
+        $this->exame = $exame;
+        return $this;
     }
-
-
 }

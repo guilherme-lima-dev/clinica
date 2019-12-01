@@ -43,6 +43,7 @@ class ProntuariosType extends AbstractType
                 'attr' => array(
                     'class' => 'select2'
                 ),
+                'placeholder' => '-- Selecione --',
             ));
     }
 

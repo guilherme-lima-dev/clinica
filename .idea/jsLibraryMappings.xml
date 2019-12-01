@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{1dbc7d90aa, bootstrap-clockpicker, bootstrap-datepicker, dataTables.bootstrap4, jquery.dataTables, mdb, popper, select2, svgembedder, toastr}" />
+    <file url="PROJECT" libraries="{1dbc7d90aa, bootstrap-clockpicker, bootstrap-datepicker, ckeditor, dataTables.bootstrap4, jquery.dataTables, mdb, popper, pt-br, select2, svgembedder, toastr}" />
   </component>
 </project>

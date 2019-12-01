@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -54,6 +55,16 @@ class Exames
      * })
      */
     private $idpacientes;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Laudos",mappedBy="exame")
+    */
+    private $laudo;
+
+    public function __toString()
+    {
+        return $this->idpacientes->getNome();
+    }
 
     /**
      * @return int
@@ -135,6 +146,20 @@ class Exames
         $this->idpacientes = $idpacientes;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getLaudo()
+    {
+        return $this->laudo;
+    }
 
-
+    /**
+     * @param mixed $laudo
+     */
+    public function setLaudo($laudo)
+    {
+        $this->laudo = $laudo;
+        return $this;
+    }
 }

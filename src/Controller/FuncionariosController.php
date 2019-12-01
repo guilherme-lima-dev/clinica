@@ -94,7 +94,7 @@ class FuncionariosController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'O item foi editado com sucesso.');
             return $this->redirectToRoute('funcionarios_index');
         }
 
@@ -113,6 +113,7 @@ class FuncionariosController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($funcionario);
             $entityManager->flush();
+            $this->addFlash('success', 'O item foi excluido com sucesso.');
         }
 
         return $this->redirectToRoute('funcionarios_index');

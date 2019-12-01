@@ -37,7 +37,7 @@ class ExamesController extends AbstractController
     public function new(Request $request): Response
     {
         $exame = new Exames();
-        if($request->query->get('paciente')){
+        if ($request->query->get('paciente')) {
             $paciente = $this->getDoctrine()->getRepository(Pacientes::class)->find($request->query->get('paciente'));
             $exame->setIdpacientes($paciente);
         }
@@ -46,11 +46,11 @@ class ExamesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $exameFile = $form['imagens']->getData();
-            if($exameFile){
+            if ($exameFile) {
                 $originalFilename = pathinfo($exameFile->getClientOriginalName(), PATHINFO_FILENAME);
                 // this is needed to safely include the file name as part of the URL
                 $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$exameFile->guessExtension();
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $exameFile->guessExtension();
 
                 // Move the file to the directory where brochures are stored
                 try {
@@ -69,7 +69,7 @@ class ExamesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($exame);
             $entityManager->flush();
-
+            $this->addFlash('success', 'O item foi criado com sucesso.');
             return $this->redirectToRoute('exames_index');
         }
 
@@ -100,11 +100,11 @@ class ExamesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $exameFile = $form['imagens']->getData();
-            if($exameFile){
+            if ($exameFile) {
                 $originalFilename = pathinfo($exameFile->getClientOriginalName(), PATHINFO_FILENAME);
                 // this is needed to safely include the file name as part of the URL
                 $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$exameFile->guessExtension();
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $exameFile->guessExtension();
 
                 // Move the file to the directory where brochures are stored
                 try {
@@ -119,13 +119,13 @@ class ExamesController extends AbstractController
                 // updates the 'brochureFilename' property to store the PDF file name
                 // instead of its contents
                 $exame->setImagens($newFilename);
-            }else{
+            } else {
                 $exame->setImagens($antigoNome);
 
             }
 
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'O item foi editado com sucesso.');
             return $this->redirectToRoute('exames_index');
         }
 
@@ -140,10 +140,11 @@ class ExamesController extends AbstractController
      */
     public function delete(Request $request, Exames $exame): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$exame->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $exame->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($exame);
             $entityManager->flush();
+            $this->addFlash('success', 'O item foi excluido com sucesso.');
         }
 
         return $this->redirectToRoute('exames_index');

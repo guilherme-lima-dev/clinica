@@ -148,7 +148,7 @@ class ConsultasController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'O item foi editado com sucesso.');
             return $this->redirectToRoute('consultas_index');
         }
 
@@ -192,6 +192,7 @@ class ConsultasController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($consulta);
             $entityManager->flush();
+            $this->addFlash('success', 'O item foi excluido com sucesso.');
         }
 
         return $this->redirectToRoute('consultas_index');

@@ -27,7 +27,7 @@
                 </tr>
                 <tr>
                     <th>Exames</th>
-                    <td>{{ laudo.exames }}</td>
+                    <td><a href="{{ asset('uploads/exame/' ~ laudo.exame.imagens) }}" target="_blank">{{ laudo.exame.imagens }}</a></td>
                 </tr>
                 </tbody>
             </table>

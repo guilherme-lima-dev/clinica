@@ -43,10 +43,25 @@
                                 {#                <td>{{ laudo.id }}</td>#}
                                 <td>{{ laudo.dsLaudo }}</td>
                                 <td>{{ laudo.data ? laudo.data|date('Y-m-d H:i:s') : '' }}</td>
-                                <td>{{ laudo.exames }}</td>
                                 <td>
-                                    <a href="{{ path('laudos_show', {'id': laudo.id}) }}">show</a>
-                                    <a href="{{ path('laudos_edit', {'id': laudo.id}) }}">edit</a>
+                                    <a href="{{ asset('uploads/exame/' ~ laudo.exame.imagens) }}" target="_blank">{{ laudo.exame.imagens }}</a>
+                                </td>
+                                <td>
+{#                                    <a href="{{ path('laudos_show', {'id': laudo.id}) }}">show</a>#}
+{#                                    <a href="{{ path('laudos_edit', {'id': laudo.id}) }}">edit</a>#}
+
+
+                                    <a class="mb-2 mr-2 btn btn-primary"
+                                       href="{{ path('laudos_show', {'id': laudo.id}) }}" title="Ver"
+                                       data-toggle="tooltip" data-placement="bottom"><i
+                                                class="fa fa-eye"></i></a>
+
+                                    <a class="mb-2 mr-2 btn btn-success"
+                                       href="{{ path('laudos_edit', {'id': laudo.id}) }}" title="Editar"
+                                       data-toggle="tooltip" data-placement="bottom"><i
+                                                class="fa fa-edit"></i></a>
+
+
                                 </td>
                             </tr>
                             {#        {% else %}#}

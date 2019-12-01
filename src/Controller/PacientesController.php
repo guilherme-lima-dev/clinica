@@ -54,7 +54,7 @@ class PacientesController extends AbstractController
                 $entityManager->persist($acesso);
                 $entityManager->flush();
             }
-
+            $this->addFlash('success', 'O item foi criado com sucesso.');
             return $this->redirectToRoute('pacientes_index');
         }
 
@@ -85,7 +85,7 @@ class PacientesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'O item foi editado com sucesso.');
             return $this->redirectToRoute('pacientes_index');
         }
 
@@ -104,6 +104,7 @@ class PacientesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($paciente);
             $entityManager->flush();
+            $this->addFlash('success', 'O item foi excluido com sucesso.');
         }
 
         return $this->redirectToRoute('pacientes_index');

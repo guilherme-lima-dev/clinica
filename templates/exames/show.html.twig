@@ -38,8 +38,7 @@
             <hr>
             <a class="mb-2 mr-2 btn btn-secondary" href="{{ path('exames_index') }}">Voltar à Lista</a>
             <a class="mb-2 mr-2 btn btn-primary" href="{{ path('exames_edit', {'id': exame.id}) }}">Editar</a>
+{#            {{ include('exames/_delete_form.html.twig') }}#}
         </div>
     </div>
-
-    {{ include('exames/_delete_form.html.twig') }}
 {% endblock %}

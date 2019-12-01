@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Exames;
 use App\Entity\Laudos;
 use App\Form\LaudosType;
+use App\Repository\LaudosRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,15 +35,18 @@ class LaudosController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $entityManager = $this->getDoctrine()->getManager();
         $laudo = new Laudos();
-        $form = $this->createForm(LaudosType::class, $laudo);
+        $qbExames = $entityManager->getRepository(Exames::class)->findAll();
+        $form = $this->createForm(LaudosType::class, $laudo, array(
+            'exames' => $qbExames
+        ));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($laudo);
             $entityManager->flush();
-
+            $this->addFlash('success', 'O item foi criado com sucesso.');
             return $this->redirectToRoute('laudos_index');
         }
 
@@ -71,7 +76,7 @@ class LaudosController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'O item foi editado com sucesso.');
             return $this->redirectToRoute('laudos_index');
         }
 
@@ -86,10 +91,11 @@ class LaudosController extends AbstractController
      */
     public function delete(Request $request, Laudos $laudo): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$laudo->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $laudo->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($laudo);
             $entityManager->flush();
+            $this->addFlash('success', 'O item foi excluido com sucesso.');
         }
 
         return $this->redirectToRoute('laudos_index');

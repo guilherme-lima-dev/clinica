@@ -20,22 +20,4 @@
             {{ include('laudos/_form.html.twig') }}
         </div>
     </div>
-
-    {#    <script>#}
-    {#        $(document).ready(function() {#}
-    {#            $("form").attr('novalidate', 'novalidate');#}
-    {#        });#}
-    {#    </script>#}
-    <script>
-        $(document).ready(function () {
-            ClassicEditor
-                .create(document.querySelector('#laudos_dsLaudo'),{
-                    language: 'pt-br',
-                    content: 'pt-br'
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        });
-    </script>
 {% endblock %}

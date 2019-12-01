@@ -37,13 +37,23 @@ class LaudosController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $laudo = new Laudos();
-        $qbExames = $entityManager->getRepository(Exames::class)->findAll();
+        $qbExames = $entityManager->getRepository(Exames::class)->findBy([
+
+        ]);
         $form = $this->createForm(LaudosType::class, $laudo, array(
             'exames' => $qbExames
         ));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $qb = $this->getDoctrine()->getRepository(Laudos::class)->findBy([
+                'exame' => $laudo->getExame()
+            ]);
+            if ($qb) {
+                $this->addFlash('error', 'O exame selecionado já possui um laudo cadastrado.');
+                return $this->redirectToRoute('laudos_new');
+            }
+            $laudo->getDsLaudo(strip_tags($laudo->getDsLaudo()));
             $entityManager->persist($laudo);
             $entityManager->flush();
             $this->addFlash('success', 'O item foi criado com sucesso.');

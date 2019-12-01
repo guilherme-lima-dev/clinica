@@ -21,10 +21,11 @@ class LaudosRepository extends ServiceEntityRepository
 
     public function buscaExames()
     {
-        return $this
-            ->createQueryBuilder('e')
-            ->select('e')
-            ->getQuery()
-            ->getResult();
+        $entityManager = $this->getEntityManager();
+        $qb = $entityManager->createQueryBuilder(
+            'select e from App\Entity\Exames e inner join App\Entity\Laudos l on e.id != l.id'
+        );
+
+        return $qb->getQuery()->getResult();
     }
 }

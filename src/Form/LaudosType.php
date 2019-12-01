@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Exames;
 use App\Entity\Laudos;
 use Doctrine\ORM\Mapping\Entity;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -19,11 +20,11 @@ class LaudosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dsLaudo', TextareaType::class, array(
+            ->add('dsLaudo', CKEditorType::class, array(
                 'label' => 'Descrição',
-                'attr' => array(
-                    'id' => 'editor'
-                )
+//                'attr' => array(
+//                    'id' => 'editor'
+//                )
             ))
             ->add('data', DateType::class, array(
                 'widget' => 'single_text',

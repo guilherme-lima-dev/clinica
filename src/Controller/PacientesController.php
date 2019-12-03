@@ -46,7 +46,6 @@ class PacientesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $paciente->setDataCadastro(new \DateTime());
             $entityManager->persist($paciente);
-            $entityManager->flush();
             if ($form2->isSubmitted() && $form2->isValid()) {
                 $entityManager = $this->getDoctrine()->getManagerForClass(Acesso::class);
                 $acesso->setPacientes($paciente);

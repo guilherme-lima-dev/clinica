@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('funcionarios_delete', {'id': funcionario.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+<form method="post" action="{{ path('funcionarios_delete', {'id': funcionario.id}) }}" onsubmit="return confirm('Você tem certeza que deseja excluir esse item?');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ funcionario.id) }}">
     <button class="btn btn-danger mb-2 mr-2" title="Exluir" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-trash"></i></button>

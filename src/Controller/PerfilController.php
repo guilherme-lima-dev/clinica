@@ -86,7 +86,7 @@ class PerfilController extends AbstractController
      */
     public function delete(Request $request, Perfil $perfil): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$perfil->getIdperfil(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $perfil->getIdperfil(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($perfil);
             $entityManager->flush();

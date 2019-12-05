@@ -2,8 +2,8 @@
     {{ form_widget(form) }}
 <hr>
 <a class="btn btn-secondary" href="{{ path('laudos_index') }}">Voltar à Lista</a>
-    <button type="submit" class="btn btn-success">{{ button_label|default('Salvar') }}</button>
+<button type="submit" class="btn btn-success">{{ button_label|default('Salvar') }}</button>
+{{ form_end(form) }}
 {% if app.request.pathinfo != '/laudos/new' %}
     {{ include('laudos/_delete_form.html.twig') }}
 {% endif %}
-{{ form_end(form) }}

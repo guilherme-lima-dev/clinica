@@ -22,11 +22,11 @@
                 </tr>
                 <tr>
                     <th>Data de Nascimento</th>
-                    <td>{{ funcionario.dataNascimento ? funcionario.dataNascimento|date('Y-m-d') : '' }}</td>
+                    <td>{{ funcionario.dataNascimento ? funcionario.dataNascimento|date('d/m/Y') : '' }}</td>
                 </tr>
                 <tr>
                     <th>Data de Admissão</th>
-                    <td>{{ funcionario.dataAdmissao ? funcionario.dataAdmissao|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ funcionario.dataAdmissao ? funcionario.dataAdmissao|date('d/m/Y') : '' }}</td>
                 </tr>
                 <tr>
                     <th>Sexo</th>

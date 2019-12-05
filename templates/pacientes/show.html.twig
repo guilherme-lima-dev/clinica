@@ -19,11 +19,11 @@
                 </tr>
                 <tr>
                     <th>Data de Nascimento</th>
-                    <td>{{ paciente.dataNascimento ? paciente.dataNascimento|date('Y-m-d') : '' }}</td>
+                    <td>{{ paciente.dataNascimento ? paciente.dataNascimento|date('d/m/Y') : '' }}</td>
                 </tr>
                 <tr>
                     <th>Data de Cadastro</th>
-                    <td>{{ paciente.dataCadastro ? paciente.dataCadastro|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ paciente.dataCadastro ? paciente.dataCadastro|date('d/m/Y') : '' }}</td>
                 </tr>
                 <tr>
                     <th>Sexo</th>

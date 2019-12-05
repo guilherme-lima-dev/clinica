@@ -46,7 +46,7 @@
                             <tr>
 
                                 <td>{{ paciente.nome }}</td>
-                                <td>{{ paciente.dataNascimento ? paciente.dataNascimento|date('Y-m-d') : '' }}</td>
+                                <td>{{ paciente.dataNascimento ? paciente.dataNascimento|date('d/m/Y') : '' }}</td>
 
                                 <td>
                                     {% if paciente.sexo == 'm' %}

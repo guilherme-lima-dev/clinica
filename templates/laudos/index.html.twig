@@ -42,9 +42,13 @@
                             <tr>
                                 {#                <td>{{ laudo.id }}</td>#}
                                 <td>{{ laudo.dsLaudo|raw }}</td>
-                                <td>{{ laudo.data ? laudo.data|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ laudo.data ? laudo.data|date('d/m/Y') : '' }}</td>
                                 <td>
-                                    <a href="{{ asset('uploads/exame/' ~ laudo.exame.imagens) }}" target="_blank">{{ laudo.exame.imagens }}</a>
+                                    {% if laudo.exame|length > 0 %}
+                                        <a href="{{ asset('uploads/exame/' ~ laudo.exame.imagens) }}" target="_blank">{{ laudo.exame.imagens }}</a>
+                                        {% else %}
+                                        &mdash;
+                                    {% endif %}
                                 </td>
                                 <td>
 {#                                    <a href="{{ path('laudos_show', {'id': laudo.id}) }}">show</a>#}

@@ -41,7 +41,8 @@ class LaudosType extends AbstractType
                 'attr' => array(
                     'class' => 'select2',
                     'data-placeholder' => '-- Selecione --'
-                )
+                ),
+                'required' => false
             ));
     }
 

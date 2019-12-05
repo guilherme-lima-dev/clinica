@@ -40,7 +40,7 @@ class Prontuarios
      *
      * @ORM\ManyToOne(targetEntity="Laudos")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="laudos_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="laudos_id", referencedColumnName="id", nullable=true)
      * })
      */
     private $laudos;
@@ -106,7 +106,7 @@ class Prontuarios
     /**
      * @return Laudos
      */
-    public function getLaudos(): ?Laudos
+    public function getLaudos()
     {
         return $this->laudos;
     }
@@ -114,9 +114,10 @@ class Prontuarios
     /**
      * @param Laudos $laudos
      */
-    public function setLaudos(Laudos $laudos): void
+    public function setLaudos(Laudos $laudos)
     {
         $this->laudos = $laudos;
+        return $this;
     }
 
     /**
@@ -134,8 +135,4 @@ class Prontuarios
     {
         $this->idpacientes = $idpacientes;
     }
-
-
-
-
 }

@@ -41,9 +41,16 @@
                         {% for prontuario in prontuarios %}
                             <tr>
                                 <td>{{ prontuario.data ? prontuario.data|date('Y-m-d H:i:s') : '' }}</td>
-                                <td>{{ prontuario.laudos }}</td>
-                                <td>{{ prontuario.pacientespacientes }}</td>
-                                <td>{{ prontuario.dsProntuario }}</td>
+                                <td>
+                                    {% if prontuario.laudos|length > 0 %}
+                                        <a href="{{ asset('uploads/exame/' ~ prontuario.laudos.exame.imagens) }}"
+                                           target="_blank">{{ prontuario.laudos.exame.imagens }}</a>
+                                    {% else %}
+                                        &mdash;
+                                    {% endif %}
+                                </td>
+                                <td>{{ prontuario.idpacientes }}</td>
+                                <td>{{ prontuario.dsProntuario|raw }}</td>
                                 <td>
                                     <a class="mb-2 mr-2 btn btn-primary"
                                        href="{{ path('prontuarios_show', {'id': prontuario.id}) }}" title="Ver"

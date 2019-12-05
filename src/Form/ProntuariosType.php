@@ -2,8 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Laudos;
 use App\Entity\Pacientes;
 use App\Entity\Prontuarios;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -16,7 +18,7 @@ class ProntuariosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dsProntuario', null, array(
+            ->add('dsProntuario', CKEditorType::class, array(
                 'label' => 'Descrição'
             ))
             ->add('data', DateType::class, array(
@@ -27,13 +29,16 @@ class ProntuariosType extends AbstractType
                     'class' => 'datepicker'
                 )
             ))
-            ->add('laudos', ChoiceType::class, array(
+            ->add('laudos', EntityType::class, array(
                 'label' => 'Laudo',
+                'class' => Laudos::class,
+                'choice_label' => 'exame',
                 'multiple' => false,
                 'placeholder' => '-- Selecione --',
                 'attr' => array(
                     'class' => 'select2'
-                )
+                ),
+                'required' => false
             ))
             ->add('idpacientes', EntityType::class, array(
                 'label' => 'Paciente',

@@ -41,7 +41,7 @@
                         {% for laudo in laudos %}
                             <tr>
                                 {#                <td>{{ laudo.id }}</td>#}
-                                <td>{{ laudo.dsLaudo }}</td>
+                                <td>{{ laudo.dsLaudo|raw }}</td>
                                 <td>{{ laudo.data ? laudo.data|date('Y-m-d H:i:s') : '' }}</td>
                                 <td>
                                     <a href="{{ asset('uploads/exame/' ~ laudo.exame.imagens) }}" target="_blank">{{ laudo.exame.imagens }}</a>

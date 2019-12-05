@@ -37,9 +37,7 @@ class LaudosController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $laudo = new Laudos();
-        $qbExames = $entityManager->getRepository(Exames::class)->findBy([
-
-        ]);
+        $qbExames = $entityManager->getRepository(Exames::class)->findAll();
         $form = $this->createForm(LaudosType::class, $laudo, array(
             'exames' => $qbExames
         ));

@@ -38,7 +38,7 @@ class Laudos
 
     /**
      * @ORM\OneToOne(targetEntity="Exames",inversedBy="laudo")
-     * @ORM\JoinColumn(name="exame_id",referencedColumnName="id",nullable=true)
+     * @ORM\JoinColumn(name="id",referencedColumnName="id",nullable=true)
     */
     private $exame;
 

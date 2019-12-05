@@ -23,7 +23,7 @@
     {{ form_widget(form) }}
         {{ form_widget(form2) }}
 <hr>
+{{ form_end(form2) }}
 <a class="btn btn-secondary" href="{{ path('funcionarios_index') }}">Voltar à Lista</a>
 <button class="btn btn-success" id="btnFormFuncionario">{{ button_label|default('Salvar') }}</button>
-{{ form_end(form2) }}
 {{ form_end(form) }}

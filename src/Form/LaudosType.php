@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Exames;
 use App\Entity\Laudos;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -24,7 +26,7 @@ class LaudosType extends AbstractType
                     'class' => 'datepicker'
                 )
             ))
-            ->add('exames', ChoiceType::class, array(
+            ->add('exames', null, array(
                 'placeholder' => '-- Selecione --',
                 'multiple' => true,
                 'attr' => array(

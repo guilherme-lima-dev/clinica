@@ -135,6 +135,10 @@ class Exames
         $this->idpacientes = $idpacientes;
     }
 
+    public function __toString()
+    {
+        return $this->getIdpacientes()->getNome().'-'.$this->getData()->format('d/m/Y');
+    }
 
 
 }

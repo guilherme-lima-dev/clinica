@@ -31,7 +31,11 @@
                 </tr>
                 <tr>
                     <th>Laudo</th>
-                    <td>{{ prontuario.laudos }}</td>
+                    <td>
+                        <a href="{{ asset('uploads/exame/' ~ prontuario.laudos.exame.imagens) }}"
+                           target="_blank">{{ prontuario.laudos.exame.imagens }}</a>
+{#                        {{ prontuario.laudos.exame.imagens }}#}
+                    </td>
                 </tr>
                 </tbody>
             </table>
